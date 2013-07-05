@@ -1,0 +1,68 @@
+<?php 
+	require 'connect.php'; 
+	session_start();	
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Register</title>
+		<script type='text/javascript' src='registerval.js'></script>
+	</head>
+	<body>
+		<div id='validation'>
+			<?php 
+				require 'registerval.php'; 
+				if(isset($_SESSION['id'])){
+					echo "You are already registered and logged in.<br/>";
+				}
+			?>
+		</div>
+		<div id='form'>
+		<table border='0'>
+			<form method='POST' action='register.php' onsubmit='return validate()'>
+				<tr>
+					<td>First Name:</td>
+					<td><input type="text" name="firstname" id="firstname"/></td>
+				</tr>
+				<tr>
+					<td>Last Name:</td>
+					<td><input type='text' name='lastname' id='lastname'/></td>
+				</tr>
+				<tr>
+					<td>Username:</td>
+					<td><input type='text' name='username' id='username' onkeyup='usernamecheck()'/></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type='password' name='password' id='password'/></td>
+				</tr>
+				<tr>
+					<td>Confirm Password:</td>
+					<td><input type='password' name='repassword' id='repassword'/></td>
+				</tr>
+				<tr>
+					<td>Email:</td>
+					<td><input type='email' name='email' id='email'/></td>
+				</tr>
+				<tr>
+					<td colspan='2'><input type='submit' name='register' id='register' value='Register'/></td>
+				</tr>
+			</form>
+		</table>
+		</div>
+	</body>
+</html>
+
+
+<!--
+		VALIDATION
+	All fields mandatory
+	FIRST NAME : Starts with Capital Letter. No numbers or special characters
+	LAST NAME : ''	
+	USERNAME : Letters, numbers , underscore, .		min  = 4 max = 10
+	PASSWORD : letters,numbers,underscore,atleast one letter one number  min = 6 letters max = 20
+	Email  = Normal Validation
+
+
+
+-->
