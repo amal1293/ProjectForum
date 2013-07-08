@@ -5,6 +5,7 @@ function validate(){
 	var password = document.getElementById('password');
 	var repassword = document.getElementById('repassword');
 	var email = document.getElementById('email');
+	var captchatext = document.getElementById('captchatext');
 	
 	var errorval = document.getElementById('validation');
 	errorval.innerHTML = "";
@@ -19,17 +20,26 @@ function validate(){
 	if(firstname.value != "" && !(firstname.value[0] >= 'A' && firstname.value[0] <= 'Z')){
 		errorval.innerHTML += "First Name must start with a capital letter.<br/>";
 		returnvalue = false;
+		forstname.value = "";
 	}
 	
 	if(lastname.value != "" && !(lastname.value[0] >= 'A' && lastname.value[0] <= 'Z')){
 		errorval.innerHTML += "Last Name must start with a capital letter.<br/>";
 		returnvalue = false;
+		lastname.value = "";
 	}
 	
 	if(password.value != repassword.value){
 		errorval.innerHTML += "Passwords do not match.<br/>";
 		returnvalue = false;
 	}
+
+	if(returnvalue == false){
+		password.value = "";
+		repassword.value = "";
+		captchatext.value = "";
+	}
+
 	return returnvalue;
 }
 

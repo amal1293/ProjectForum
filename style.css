@@ -1,0 +1,7 @@
+#registration,#login,#menus,#content{
+	background-color : white;
+	width : 90%;
+	border : 1px solid red;
+	margin : 0 auto;
+	padding : 5px;
+}

@@ -5,5 +5,6 @@
 		session_destroy();
 	}
 	else
-		echo "You are not logged in";
+		echo "You are not logged in.<br/>";
+	echo "Return to <a href='index.php'>Forum</a>";
 ?>
