@@ -25,10 +25,31 @@
 				$_POST['lastname'] = "";
 				echo "Last Name must start with a capital letter.<br/>";
 			}
-			if($password != $repassword){
+			if(!empty($username) && preg_match('/^[a-zA-Z0-9\_]+$/',$username) == 0){
+				$validated = 0;
+				$_POST['username'] = "";
+				echo "Username must contain only letters,numbers and underscore.<br/>";
+			}
+			if(!empty($username) && (strlen($username) < 4 || strlen($username) > 10)){
+				$validated = 0;
+				$_POST['username'] = "";
+				echo "Username must be between 4 and 10 characters long.<br/>";
+			}
+			if(!empty($password) && strlen($password) < 6){
+				$validated = 0;
+				echo "Password must be atleast 6 characters long.<br/>";
+			}
+			if(!(empty($password) && empty($repassword)) && $password != $repassword){
 				$validated = 0;
 				echo "Passwords do not match.<br/>";
 			}
+
+			if(!empty($email) && preg_match('/^[a-zA-Z0-9]+[-\._]?[a-zAA-Z0-9]?@[a-zA-Z0-9]+\.[a-z]+\.?[a-z]{1,3}$/',$email) == 0){
+				$validated = 0;
+				$_POST['email'] = "";
+				echo "Enter a valid email.<br/>";
+			}
+
 			if($captchatext == ""){
 				echo "Enter the text in the image.<br/>";
 				$validated = 0;

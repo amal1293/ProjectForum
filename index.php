@@ -55,7 +55,7 @@
 					if(mysql_num_rows($query5) > 0){
 						//echo $category['name'].'<br/>';
 						while($forumname = mysql_fetch_assoc($query5)){
-							echo "<a href='forum.php?id=".$forumname['id']."''>".$forumname['name']."</a><br/>";
+							echo "<a href='forum.php?fid=".$forumname['id']."&catid=".$forumname['catid']."'>".$forumname['name']."</a><br/>";
 						}
 					}
 				}

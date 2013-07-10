@@ -2,6 +2,12 @@
 <?php 
 	session_start(); 
 	require 'connect.php';
+	if(!isset($_POST['login'])){
+		if(isset($_SERVER['HTTP_REFERER']))
+			$_SESSION['redirect'] = $_SERVER['HTTP_REFERER'];
+		else
+			$_SESSION['redirect'] = 'index.php';
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,6 +16,11 @@
 		<link type='text/css' rel='stylesheet' href='style.css'/>
 	</head>
 	<body>
+		<div>
+			<?php
+				echo "<a href='index.php'>Forum Index</a>";
+			?>
+		</div>
 		<div id='login'>
 			<h2>Login</h2>
 			<?php
@@ -24,8 +35,10 @@
 							echo "Incorrect username or password.<br/>";
 						}
 						else{
-							echo "You have successfully logged in.<br/>";
+							//echo "You have successfully logged in.<br/>";
 							$_SESSION['id'] = mysql_result($query,0);
+							//echo $_SERVER['HTTP_REFERER'];
+							header("Location:".$_SESSION['redirect']);
 						}
 					}
 				}
